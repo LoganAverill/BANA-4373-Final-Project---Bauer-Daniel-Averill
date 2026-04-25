@@ -14,9 +14,10 @@ Assume a fresh Python environment.
 Download or clone the project from GitHub, then navigate into the project folder:
 
 ```bash
-git clone https://github.com/yourname/oil-employment-project.git
+git clone (https://github.com/LoganAverill/BANA-4373-Final-Project---Bauer-Daniel-Averill)
 cd oil-employment-project
 
+```
 Due to file size limitations, raw QCEW data is not stored in this repository.
 
 To reproduce results:
