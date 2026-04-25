@@ -41,7 +41,7 @@ Run the following notebooks in sequence:
   - Texas Unemployment Rate: https://fred.stlouisfed.org/
 - BLS QCEW (Quarterly Census of Employment and Wages)
   - https://www.bls.gov/cew/downloadable-data-files.htm
-  - 
+    
 Due to file size limitations, raw QCEW data is not stored in this repository.
 
 To reproduce results:
