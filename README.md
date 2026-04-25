@@ -52,10 +52,10 @@ https://www.bls.gov/cew/downloadable-data-files.htm
 
 FRED data can be downloaded directly. 
 
-### Team Members
+### Team Members (GitHub Usernames)
 - Anthony Bauer:
 - Jackson Daniel:
-- Logan Averill:
+- Logan Averill: LoganAverill
 
 ### Notes
 - All code is written to be fully reproducible
