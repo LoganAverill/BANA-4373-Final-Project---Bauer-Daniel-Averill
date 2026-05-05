@@ -1,73 +1,91 @@
-# Dashboard — How to Run
+# Deliverable B — Interactive Dashboard
 
-This dashboard is the Deliverable B companion to the team's BANA 4373 final project on oil price shocks and Texas energy employment. It runs locally on Windows, macOS, and Linux. Requires **Python 3.10 or newer**.
+**BANA 4373 Final Project | Spring 2026**
+**Authors:** Logan Averill, Anthony Bauer, Jackson Daniel
+**Topic:** Oil Price Shocks and Texas Energy Employment
 
-## Quick start (recommended: use a virtual environment)
+---
 
-A virtual environment avoids dependency conflicts with anything else on the grader's machine. The whole sequence below takes under a minute.
+## What this is
 
-> Replace `<FOLDER>` in the first command with the actual path to wherever you saved this folder on your computer (e.g., `C:\Users\YourName\Downloads\Deliverable_B_Submission` on Windows, or `~/Downloads/Deliverable_B_Submission` on Mac).
+An interactive dashboard companion to the team's analytical pipeline. The grader can pick any Texas county, time window, and pre/post-2020 split, and a live OLS regression of energy-sector employment growth on WTI oil price recomputes on every selection.
 
-### macOS / Linux
+## What's in this folder
 
-```bash
-cd <FOLDER>
-python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-python app.py
-```
+| File | Purpose |
+|---|---|
+| `04_dashboard.ipynb` | Jupyter notebook — recommended way to run the dashboard |
+| `app.py` | Standalone Python script — alternative to the notebook |
+| `final_dataset.csv` | Merged county-level panel (9,295 obs, 202 counties) |
+| `requirements.txt` | Pinned Python dependencies |
+| `Executive_Brief.pdf` | 3-page executive brief (the graded artifact) |
+| `DASHBOARD_README.md` | This file |
 
-### Windows (PowerShell)
+---
 
-```powershell
-cd <FOLDER>
-python -m venv venv
-venv\Scripts\Activate.ps1
-pip install -r requirements.txt
-python app.py
-```
+## How to run (pick one path)
 
-If PowerShell blocks the activation script, run it once as administrator:
-`Set-ExecutionPolicy -Scope CurrentUser RemoteSigned`
+Both paths require Python 3.10 or newer. All dependencies are listed in `requirements.txt`.
 
-### Windows (Command Prompt)
+### Path A — Jupyter notebook (recommended)
 
-```cmd
-cd <FOLDER>
-python -m venv venv
-venv\Scripts\activate.bat
-pip install -r requirements.txt
-python app.py
-```
+This matches the rest of the project's notebook-based workflow.
 
-After the last command runs, you should see `Dash is running on http://127.0.0.1:8050/`. Open that URL in any browser.
+1. Open a terminal in this folder.
+2. Install dependencies:
+   - macOS / Linux: `python3 -m pip install -r requirements.txt`
+   - Windows: `python -m pip install -r requirements.txt`
+3. Launch Jupyter:
+   - macOS / Linux: `python3 -m notebook`
+   - Windows: `python -m notebook`
+4. In the browser tab that opens, click `04_dashboard.ipynb`.
+5. Click `Cell` -> `Run All`. The dashboard will render inline at the bottom of the notebook.
 
-## Quick start without a virtual environment
+### Path B — Standalone script
 
-If the grader prefers to skip the venv, the same install works system-wide. Use whichever Python invocation is on the machine:
+Use this if you'd rather not run Jupyter.
 
-| OS | Python | Pip |
-|---|---|---|
-| macOS / Linux (most setups) | `python3` | `python3 -m pip` |
-| Windows (after installer) | `python` | `python -m pip` |
+1. Open a terminal in this folder.
+2. Install dependencies (same as Path A step 2).
+3. Run the app:
+   - macOS / Linux: `python3 app.py`
+   - Windows: `python app.py`
+4. Open `http://127.0.0.1:8050` in any browser.
 
-So on a Mac without a venv:
-
-```bash
-python3 -m pip install -r requirements.txt
-python3 app.py
-```
-
-If you see `error: externally-managed-environment` (common on macOS with Homebrew Python and recent pip), either use the venv approach above, or add `--user`:
-
-```bash
-python3 -m pip install --user -r requirements.txt
-```
+---
 
 ## What the dashboard does
 
 Three interactive controls:
 
-- **County dropdown** — switch between "All Texas" (panel average across 202 counties) and the top energy-employment counties (Harris, Midland, Ector, etc.).
-- **Sample split** — full window, pre-2020 only, or post-2020 only. Used to test whether the oil-employme
+- **County dropdown** — switch between "ALL TEXAS" (panel average) and the top 12 Texas counties by mean energy employment (Harris, Midland, Ector, Tarrant, Dallas, etc.).
+- **Sample-split dropdown** — restrict the regression to pre-2020, post-2020, or the full window.
+- **Time-window slider** — any year span from 2010 to 2025.
+
+Below the chart, a live OLS panel updates on every selection: coefficient on WTI, p-value, R-squared, and N.
+
+## Data sources
+
+| Variable | Source | Notes |
+|---|---|---|
+| WTI oil price | FRED, `WTISPLC` | Monthly, averaged to quarterly |
+| Texas unemployment | FRED, `TXUR` | Monthly, averaged to quarterly |
+| County energy employment | BLS QCEW, NAICS 211 + 213 | Texas counties, 2010 Q2 - 2025 Q3 |
+
+Final merged panel: 9,295 observations across 202 Texas counties.
+
+---
+
+## Troubleshooting
+
+**`pip` or `python` not found** — use `python3` and `python3 -m pip` on macOS / Linux.
+
+**`error: externally-managed-environment`** (macOS/Linux with Homebrew) — add `--user`: `python3 -m pip install --user -r requirements.txt`.
+
+**Port 8050 in use** (Path B only) — open `app.py`, change the last line's `port=8050` to `port=8051`.
+
+**Jupyter won't open** (Path A) — make sure you're in this folder when you run the install and launch commands.
+
+**`ModuleNotFoundError`** — re-run `pip install -r requirements.txt`.
+
+**Stop the server** — press `Ctrl+C` in the terminal.
