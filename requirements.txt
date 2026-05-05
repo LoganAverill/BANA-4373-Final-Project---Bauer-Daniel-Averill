@@ -1,12 +1,5 @@
-requirements.txt
-
-Here’s a clean, safe version with stable versions:
-
-pandas == 2.1.4
-numpy == 1.26.4
-matplotlib == 3.8.2
-seaborn == 0.13.2
-statsmodels == 0.14.1
-scikit-learn == 1.4.0
-fredapi == 0.5.1
-jupyter == 1.0.0
+dash>=2.17,<3.0
+plotly>=5.20
+pandas>=2.0
+numpy>=1.24
+statsmodels>=0.14
