@@ -54,7 +54,7 @@ FRED data can be downloaded directly.
 
 ### Team Members (GitHub Usernames)
 - Anthony Bauer: awbauerco-web
-- Jackson Daniel:
+- Jackson Daniel: jackwdaniel
 - Logan Averill: LoganAverill
 
 ### Notes
