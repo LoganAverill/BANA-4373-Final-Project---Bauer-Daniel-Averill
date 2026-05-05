@@ -53,7 +53,7 @@ https://www.bls.gov/cew/downloadable-data-files.htm
 FRED data can be downloaded directly. 
 
 ### Team Members (GitHub Usernames)
-- Anthony Bauer:
+- Anthony Bauer: awbauerco-web
 - Jackson Daniel:
 - Logan Averill: LoganAverill
 
